@@ -1,0 +1,55 @@
+/* Popup CSS */
+
+.erm-popup-wrapper{
+	width:100%;
+	height:100%;
+	background: rgb(237, 237, 237);
+	color:black;
+}
+
+.erm-popup{
+	width:70% !important;
+	padding-top: 30px;
+	background: rgb(250, 250, 250);
+	padding: 40px;
+	margin:0 auto;
+	margin-bottom: 40px;
+	color: rgb(50,50,50);
+}
+
+.erm-popup-title {
+	font-size: 32px;
+	padding: 15px 0;
+	border-bottom: 2px solid rgb(202, 194, 194);
+}
+
+.erm-popup-content{
+	font-size: 16px;
+	overflow: scroll;
+	padding-top: 20px;
+	line-height: 25px;
+}
+
+.b-modal{
+	background: white !important;
+	opacity: 1 !important;
+}
+
+.mfp-close{
+	position: fixed !important;
+	top: 30px !important;
+	right: 25px !important;
+}
+
+.erm-popup-content p, .erm-popup-content ul, .erm-popup-content ol, .erm-popup-content div{
+	margin-bottom: 20px;
+}
+
+h1, h2, h3, h4, h5, h6{
+	margin: 20px 0;
+}
+
+table, tr, td{
+	width:auto;
+	border:1px solid;
+}
