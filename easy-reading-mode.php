@@ -20,9 +20,8 @@ require_once( ERM__PLUGIN_DIR . 'class.erm-widget.php' );
 // Initialising all hooks - actions and filters
 add_action( 'init', 'erm_init_hooks' );
 
-
-
 $activated = esc_attr( get_option('erm_is_activated') );
+register_activation_hook( __FILE__, 'erm_activation_hook' ); 
 
 if( $activated == "yes" && !wp_is_mobile() ){
 	
@@ -38,15 +37,35 @@ if( $activated == "yes" && !wp_is_mobile() ){
 	// Filter to add the button before the content
 	add_filter( 'the_content' , array( 'ERM_Widget' , 'erm_add_button' ) );
 
-	$use_custom_design = esc_attr( get_option('erm_use_custom_design') );
+	// Action to add admin notice
+	// add_action( 'admin_notices', array('ERM_Admin', 'erm_admin_notice' ));
+
+	$use_custom_design = esc_attr( get_option('erm_custom_design') );
 	
-	if($use_custom_design == "yes"){
-		add_action( 'wp_head', array( 'ERM_Widget', 'erm_add_custom_design_css' ));
-	}
+	// Activation Hook
+	// add_action('register_activation_hook','erm_activation_hook');
 
 }
 
 
 function erm_init_hooks(){
-	add_action( 'admin_menu' , array( 'ERM_Admin' , 'erm_admin_menu_options' ));
+	add_action( 'admin_menu' , 'erm_options_page' );
+	
+}
+
+function erm_options_page(){
+	add_action( 'admin_init', array('ERM_Admin', 'erm_register_settings') );
+	add_options_page( 'Easy Reading Mode | Options Page' , 'Easy Reading Mode' , 'manage_options' , 'erm-options-page' , array( 'ERM_Admin' , 'erm_options_page' ) );
+}
+
+function erm_activation_hook(){
+	$is_first_time = get_option('erm_is_first_time');
+	// echo $is_first_time;
+	if($is_first_time != 'no'){
+		update_option('erm_is_activated','yes');
+	}else{
+		$obj = new ERM_Admin();
+		$obj->erm_register_settings();
+		update_option('erm_is_first_time','no');
+	}
 }
