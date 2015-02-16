@@ -2,6 +2,31 @@
 
 class ERM_Admin{
 
+   function erm_admin_notice(){
+      // register_setting( 'erm-notice-settings', 'erm-not_settings' );
+      // register_setting( 'erm-notice-settings', 'erm_notice' );
+
+      // $notice = esc_attr( get_option('erm_notice') );
+      // if($notice == ""){
+      //    update_option('erm_notice','yes');
+      // }
+      // echo $notice;
+      // echo "s";   
+      // if($notice == 'yes' || $notice == ''){
+      //    echo "<br><br>";
+      //    echo "<form method='post' action='options.php'>";
+      //    settings_fields( 'erm-notice-settings' );
+      //    // echo '<form method="post" action="options.php" class="erm-notice-hide-form">';
+      //    echo "<a href='https://wordpress.org/support/view/plugin-reviews/easy-reading-mode' target='_blank'>Please Review <i>\"Easy Reading Mode\"</i></a>";
+      //    echo '<input type="text" name="erm_notice" value="no">';
+      //    // echo '<input type="submit" value="Hide" class="button-primary"';
+      //    submit_button('Hide');
+      //    // echo '<input type="submit" name="submit" id="submit" class="button button-primary" value="Hide">';
+      //    echo '</form>';
+      // }
+
+   }
+
 	function erm_register_settings(){
 		register_setting( 'erm-settings-group', 'erm-settings' );
 
@@ -167,9 +192,15 @@ class ERM_Admin{
 			wp_register_script( $handle , $src );
 			wp_enqueue_script( $handle );
     	?>
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+      
+      <div class="erm-header" style="margin-top:20px">
+         <a href="https://wordpress.org/support/plugin/easy-reading-mode" class="pure-button pure-button-primary" target="_blank">Support</a>
+         <a href="https://wordpress.org/support/plugin/easy-reading-mode" class="pure-button pure-button-primary" target="_blank">Review</a>
+         <a href="mailto:spgandhi@live.com" class="pure-button pure-button-primary" target="_blank">Contact Author</a>
+      </div>
 
 	    <div class="wrap">
-	    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 	        <h2>My Plugin Options</h2>
 	        <form action="options.php" method="POST">
 	            <?php settings_fields( 'erm-settings-group' ); ?>

@@ -38,7 +38,7 @@ if( $activated == "yes" && !wp_is_mobile() ){
 	add_filter( 'the_content' , array( 'ERM_Widget' , 'erm_add_button' ) );
 
 	// Action to add admin notice
-	// add_action( 'admin_notices', array('ERM_Admin', 'erm_admin_notice' ));
+	add_action( 'admin_notices', array('ERM_Admin', 'erm_admin_notice' ));
 
 	$use_custom_design = esc_attr( get_option('erm_custom_design') );
 	
